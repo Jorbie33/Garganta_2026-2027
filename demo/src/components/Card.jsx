@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Card({ user, setUsers, users }) {
   const [isUpdate, setUpdate] = useState(false);
@@ -8,8 +7,23 @@ export default function Card({ user, setUsers, users }) {
     setUsers(
       users.filter((currentUser) => currentUser.username !== user.username),
     );
-    // if user.username == u.username
-    // console.log()
+  }
+
+  function handleUpdateToggle() {
+    setUpdate(!isUpdate);
+  }
+
+  function handleInputUpdateChange(e) {
+    const { value } = e.target;
+
+    const updatedUsers = users.map((currentUser) => {
+      if (currentUser.username === user.username) {
+        return { ...currentUser, username: value };
+      }
+      return currentUser;
+    });
+
+    setUsers(updatedUsers);
   }
 
   return (
@@ -17,19 +31,32 @@ export default function Card({ user, setUsers, users }) {
       <p>
         Username:{" "}
         {isUpdate ? (
-          <input value={user.username} />
+          <input
+            name="username"
+            value={user.username}
+            onChange={handleInputUpdateChange}
+            className="border text-white px-1"
+          />
         ) : (
           user?.username || "Username"
         )}
       </p>
       <p>Age: {user?.age || "Age"}</p>
 
-      <button onClick={() => setUpdate(!isUpdate)} className="bg-green-800">
-        {isUpdate ? "Cancel" : "Edit"}
+      <button
+        onClick={handleUpdateToggle}
+        className="bg-green-800 text-white px-2 py-1 mr-2 rounded"
+      >
+        {isUpdate ? "Done" : "Edit"}
       </button>
-      <button onClick={handleDelete} className="bg-red-800">
+      <button
+        onClick={handleDelete}
+        className="bg-red-800 text-white px-2 py-1 rounded"
+      >
         Delete
       </button>
     </div>
   );
 }
+
+
