@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Card({ user, setUsers, users }) {
   const [isUpdate, setUpdate] = useState(false);
@@ -58,5 +58,4 @@ export default function Card({ user, setUsers, users }) {
     </div>
   );
 }
-
 
