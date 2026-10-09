@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 const users = [
   {
     id: 1,
-    username: "Frieren",
+    username: "Frieren",  
   },
   {
     id: 2,

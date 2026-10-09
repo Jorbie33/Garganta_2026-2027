@@ -1,39 +1,40 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
-import PopupLogin from "./components/popups/PopupLogin";
+
 
 export default function App() {
   const nav = useNavigate();
-
-  const [isLoginVisible, setLoginVisible] = useState(false);
+ 
 
   return (
-    <main className="bg-slate-950 text-white min-h-screen">
-      {/* Header Navigation */}
-      {isLoginVisible && (
-        <PopupLogin
-          isLoginVisible={isLoginVisible}
-          setLoginVisible={setLoginVisible}
-        />
-      )}
+    <main className="min-h-screen bg-white text-slate-800">
+      
 
-      <header className="bg-slate-800 flex justify-between border-b">
-        <h1>APP Routing</h1>
+      <header className="border-b border-slate-200 bg-white px-6 py-4 shadow-sm">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+          <h1 className="text-lg font-bold uppercase tracking-[0.2em] text-slate-800">
+            My Portfolio
+          </h1>
 
-        <nav className="flex gap-3">
-          {/* <button onClick={() => nav('/')}>Login</button> */}
-          <button onClick={() => setLoginVisible(true)}>Login</button>
-          <button onClick={() => nav("/dashboard")}>Dashboard</button>
-          <button onClick={() => nav("/dashboard/profile/1")}>Frieren</button>
-          <button onClick={() => nav("/dashboard/profile/2")}>Fern</button>
-          <button onClick={() => nav("/dashboard/profile/3")}>Stark</button>
-        </nav>
+          <nav className="flex flex-wrap items-center gap-2 text-sm">
+            <button onClick={() => nav("/")} className="px-3 py-2 text-slate-700 hover:text-slate-900">
+              Dashboard
+            </button>
+            <button onClick={() => nav("/dashboard")} className="px-3 py-2 text-slate-700 hover:text-slate-900">
+              About Me
+            </button>
+            <button onClick={() => nav("/hobby/1")} className="px-3 py-2 text-slate-700 hover:text-slate-900">
+              Guitar
+            </button>
+            <button onClick={() => nav("/hobby/2")} className="px-3 py-2 text-slate-700 hover:text-slate-900">
+              Drums
+            </button>
+            <button onClick={() => nav("/hobby/3")} className="px-3 py-2 text-slate-700 hover:text-slate-900">
+              Bass
+            </button>
+          </nav>
+        </div>
       </header>
-
-      {/* 
-      URL: localhost:5173/dashboard/
-      Outlet Component == 
-      */}
 
       <Outlet />
     </main>
